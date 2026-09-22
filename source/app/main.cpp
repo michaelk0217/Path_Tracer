@@ -4,9 +4,13 @@
 #include <slang/slang.h>
 #include <glm/glm.hpp>
 #include <cstdio>
+#include <memory>
 
 #define VMA_IMPLEMENTATION
 #include <vma/vk_mem_alloc.h>
+
+#include "../engine/vulkan/VulkanDevice.h"
+
 
 int main() {
     // volk
@@ -34,5 +38,9 @@ int main() {
     std::printf("glm %.3f\n", v.x);
 
     std::printf("Shaders at: %s\n", SHADER_DIR);
+
+    std::unique_ptr<VulkanDevice> vulkanDevice = std::make_unique<VulkanDevice>();
+    
+    vulkanDevice.reset();
     return 0;
 }
