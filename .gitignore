@@ -1,0 +1,39 @@
+# Build output
+/build/
+build*/
+out/
+install/
+
+# CMake
+CMakeUserPresets.json
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+
+# Visual Studio
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.sln.docstates
+Debug/
+Release/
+x64/
+
+# Editors
+/.vscode/
+*.code-workspace
+
+# Windows / misc
+Thumbs.db
+desktop.ini
+*.pdb
+*.ilk
+
+# Project output
+/screenshots/
+*.exr
+*.hdr
+*.png
