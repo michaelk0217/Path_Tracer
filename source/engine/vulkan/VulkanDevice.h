@@ -32,6 +32,9 @@ public:
 	VkDevice logicalDevice{ VK_NULL_HANDLE };
 
 	QueueFamilies queueFamilies{};
+	VkQueue graphicsQueue{ VK_NULL_HANDLE };
+	VkQueue computeQueue{ VK_NULL_HANDLE };
+	VkQueue transferQueue{ VK_NULL_HANDLE };
 
 	VkCommandPool graphicsCommandPool{ VK_NULL_HANDLE };
 	VkCommandPool computeCommandPool{ VK_NULL_HANDLE };
