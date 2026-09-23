@@ -1,8 +1,5 @@
 #include "VulkanDevice.h"
 
-
-
-
 #include <iostream>
 #include <cassert>
 #include "utils.h"
@@ -38,6 +35,15 @@ void VulkanDevice::initialize()
 	instanceCI.pApplicationInfo = &appInfo;
 	instanceCI.enabledExtensionCount = instanceCount;
 	instanceCI.ppEnabledExtensionNames = instanceExtensions;
+	// validation layer
+	if (enableValidationLayers)
+	{
+		const VkBool32 verbose_value = true;
+		const VkLayerSettingEXT layer_setting = { "VK_LAYER_KHRONOS_validation", "printf_verbose", VK_LAYER_SETTING_TYPE_BOOL32_EXT, 1, &verbose_value };
+		VkLayerSettingsCreateInfoEXT layer_settings_create_info = { VK_STRUCTURE_TYPE_LAYER_SETTINGS_CREATE_INFO_EXT, nullptr, 1, &layer_setting };
+		instanceCI.pNext = &layer_settings_create_info;
+	}
+	
 
 	chk(vkCreateInstance(&instanceCI, nullptr, &instance));
 	volkLoadInstance(instance);
@@ -50,18 +56,14 @@ void VulkanDevice::initialize()
 	
 
 	// DEVICE
-	//uint32_t physicalDeviceCount{ 0 };
-	//chk(vkEnumeratePhysicalDevices(instance, &physicalDeviceCount, nullptr));
-	//physicalDevices.resize(physicalDeviceCount);
-	//chk(vkEnumeratePhysicalDevices(instance, &physicalDeviceCount, physicalDevices.data()));
-	//uint32_t physicalDeviceIndex{ 0 };
-
 	std::vector<PhysicalDeviceInfo> physicalDevices = enumerateDevices(instance, surface);
 	std::optional<uint32_t> chosen = selectDeviceInteractive(physicalDevices);
 	assert(chosen);
 
 	physicalDevice = physicalDevices[*chosen].handle;
 	queueFamilies = physicalDevices[*chosen].queueFamily;
+
+
 }
 
 void VulkanDevice::cleanUp()

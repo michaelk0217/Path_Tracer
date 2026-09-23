@@ -1,12 +1,7 @@
 // engine/vulkan/DeviceSelector.h
 #pragma once
 
-#ifndef VOLK_IMPLEMENTATION
-#define VOLK_IMPLEMENTATION
 #include <Volk/volk.h>
-#endif
-//#include <Volk/volk.h>
-//#include <vulkan/vulkan.h>
 #include <vector>
 #include <string>
 #include <optional>

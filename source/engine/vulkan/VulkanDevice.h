@@ -3,17 +3,18 @@
 #include <vector>
 #include <optional>
 
-#include <vulkan/vulkan.h>
-
+#include <Volk/volk.h>
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_vulkan.h>
 
-#ifndef VOLK_IMPLEMENTATION
-#define VOLK_IMPLEMENTATION
-#include <Volk/volk.h>
-#endif
-
 #include "DeviceSelector.h"
+
+#ifdef NDEBUG
+inline constexpr bool enableValidationLayers = false;
+#else
+inline constexpr bool enableValidationLayers = true;
+#endif 
+
 
 class VulkanDevice
 {

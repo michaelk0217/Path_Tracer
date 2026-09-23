@@ -39,6 +39,7 @@ int main() {
 
     std::printf("Shaders at: %s\n", SHADER_DIR);
 
+
     std::unique_ptr<VulkanDevice> vulkanDevice = std::make_unique<VulkanDevice>();
     
     vulkanDevice.reset();
